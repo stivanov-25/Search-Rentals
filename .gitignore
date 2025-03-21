@@ -4,3 +4,7 @@
 # Output and cache folders
 output/
 cache/
+
+# Python
+__pycache__/
+*.pyc
