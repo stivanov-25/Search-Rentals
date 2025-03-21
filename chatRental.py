@@ -36,7 +36,6 @@ def generate_property_rating(url: str):
     - BER rating
     - Travel time to work: approximate time to travel from the property to the office in seconds.
     - Safety Rating (e.g. crime rate, safety of the area, etc.)
-    - Rating on how close nearby gyms are
     - Restaurants and Cafes Rating
     - Outdoors Rating (e.g. parks, green spaces, etc.)
     - Whether the property has a gym
