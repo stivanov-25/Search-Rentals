@@ -61,9 +61,10 @@ def get_daft_location(city, page = 1):
         
         # Recursively get next page if we got full page of results
         if len(json_data['props']['pageProps']['listings']) == 20 and page <= 10:
-            next_page_properties = get_daft_location(city, page + 1)
+            next_page_properties, next_page_travel_time = get_daft_location(city, page + 1)
             properties.extend(next_page_properties)
-            
+            listings_travel_time.update(next_page_travel_time)
+
         # Cache results on first page
         if page == 1:
             os.makedirs(CACHE_FOLDER, exist_ok=True)
@@ -72,11 +73,11 @@ def get_daft_location(city, page = 1):
             with open(f"{CACHE_FOLDER}/{city}_travel_time.json", "w") as f:
                 json.dump(listings_travel_time, f, indent=2)
                 
-        return properties
+        return properties, listings_travel_time
         
     except Exception as e:
         print(f"Error fetching properties: {str(e)}")
-        return []
+        return [], {}
     
 
 def process_listing(listing):
@@ -113,7 +114,7 @@ def process_listing(listing):
             processed_listing = process_listing(listing['listing'])
             if processed_listing is not None:
                 # Exclude properties that are too far away from the office
-                publicTravelTime = get_travel_time_to_work(processed_listing, 30)
+                publicTravelTime = get_travel_time_to_work(processed_listing, 40)
                 if publicTravelTime is None:
                     return None, None
                 return listing, publicTravelTime

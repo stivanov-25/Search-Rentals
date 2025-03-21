@@ -6,7 +6,7 @@ import extractPropertyDetails
 
 
 def score_property(property_details):
-    distanceScore = distance_score(property_details['travelTime'])
+    distanceScore = distance_score(property_details['publicTravelTime'])
     ber_score = property_details['berRating']
     priceScore= price_score(property_details['price'])
     score = priceScore + ber_score + distanceScore + 25 * (property_details['safetyRating'] + property_details['gymRating'] + property_details['restaurantsRating'] + property_details['outdoorsRating'])

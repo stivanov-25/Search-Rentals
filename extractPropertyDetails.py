@@ -62,7 +62,7 @@ def extract_property_details(property, travel_time: float):
         "name": property['seoFriendlyPath'],
         "price": price,
         "berRating": berRating,
-        "travelTime": travel_time,
+        "publicTravelTime": travel_time,
         "safetyRating": propertyRating.safetyRating,
         "gymRating": propertyRating.gymRating,
         "restaurantsRating": propertyRating.restaurantsRating,
